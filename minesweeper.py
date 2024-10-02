@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-import Tkinter
+try:
+    import Tkinter
+except ModuleNotFoundError:
+    import tkinter as Tkinter
 from entities import Field, State, Colors
 
 
@@ -102,9 +105,9 @@ class Game(object):
                                      cell.y * self.CELL_SIZE + self.CELL_SIZE,
                                      fill=Colors.OPENED_CELL, width=0)
         if cell.value > 0:  # Если рядом с ячейкой лежит мина, то нарисовать значение ячейки
-            self.canvas.create_text(cell.x * self.CELL_SIZE + self.CELL_SIZE / 2,
-                                    cell.y * self.CELL_SIZE + self.CELL_SIZE / 2,
-                                    text=str(cell.value), font=('Arial', self.CELL_SIZE / 2))
+            self.canvas.create_text(int(cell.x * self.CELL_SIZE + self.CELL_SIZE / 2),
+                                    int(cell.y * self.CELL_SIZE + self.CELL_SIZE / 2),
+                                    text=str(cell.value), font=('Arial', int(self.CELL_SIZE / 2)))
 
     def draw_closed_cell(self, cell):
         """Метод отрисовки закрытой ячейки
@@ -169,7 +172,7 @@ class Game(object):
         if self.game_over:  # Если игра закончена, то нажатия клавишь не обрабатываются
             return
 
-        x, y = event.x / self.CELL_SIZE, event.y / self.CELL_SIZE  # Определить на какую ячейку кликнули
+        x, y = int(event.x / self.CELL_SIZE), int(event.y / self.CELL_SIZE)  # Определить на какую ячейку кликнули
         self.open_cell(x, y)
 
         if self.field.get_cell(x, y).has_bomb():  # Если ячейка с бомбой, то игрок сразу проигрывает
@@ -186,7 +189,7 @@ class Game(object):
         if self.game_over:  # Если игра закончена, то нажатия клавишь не обрабатываются
             return
 
-        x, y = event.x / self.CELL_SIZE, event.y / self.CELL_SIZE  # Определить на какую ячейку кликнули
+        x, y = int(event.x / self.CELL_SIZE), int(event.y / self.CELL_SIZE)  # Определить на какую ячейку кликнули
         cell = self.field.get_cell(x, y)  # Из поля достать ячейку по координатам
 
         if cell.state is State.CLOSE:  # Если ячейка закрыта

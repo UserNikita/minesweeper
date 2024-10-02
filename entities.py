@@ -78,7 +78,7 @@ class Field(object):
         self.width = width
         self.height = height
         # Список ячеек поля
-        self._cell_list = [Cell(x=n % self.width, y=n / self.width) for n in range(self.height * self.width)]
+        self._cell_list = [Cell(x=n % self.width, y=int(n / self.width)) for n in range(self.height * self.width)]
 
     def __str__(self):
         s = '  ' + ''.join([str(n) for n in range(self.width)]) + '\n'
