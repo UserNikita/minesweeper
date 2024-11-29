@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys, os
 try:
     import Tkinter
 except ModuleNotFoundError:
@@ -202,8 +203,18 @@ class Game(object):
             self.draw_closed_cell(cell)  # Нарисовать закрытую ячейку
 
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 def main():
     root = Tkinter.Tk()
+    root.title("Minesweeper")
+    root.iconbitmap(resource_path("icon.ico"))
     Game(root)
     root.mainloop()
 

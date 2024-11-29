@@ -33,5 +33,5 @@ pip install -r requirements.txt
 Запустить сборку
 
 ```bash
-pyinstaller --onefile --windowed minesweeper.py
+pyinstaller --onefile --windowed --icon icon.ico --add-data "icon.ico:." minesweeper.py
 ```
