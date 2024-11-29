@@ -20,3 +20,18 @@ python minesweeper.py
 ```bash
 python test.py
 ```
+
+
+## Сборка
+
+Установить зависимости, например pyinstaller
+
+```bash
+pip install -r requirements.txt
+```
+
+Запустить сборку
+
+```bash
+pyinstaller --onefile --windowed minesweeper.py
+```
